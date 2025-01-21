@@ -1,1 +1,3 @@
 # projects
+#### this is a repository of the projects that i had worked during my career and as a passionate ml programmer
+#### uploading of other projects are in progress... 
