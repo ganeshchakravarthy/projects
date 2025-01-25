@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Charge Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8; 
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      width: 400px;
+    }
+
+    
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #2d6a4f; 
+    }
+
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px; 
+      color: #333333; 
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    
+    .radio-group {
+      display: flex;
+      gap: 10px; 
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 5px; 
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #40916c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #52b788; 
+    }
+
+    
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2d6a4f; 
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Healthcare Charge Prediction</h1>
+    <form action="/predict" method="POST">
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Enter your age" required>
+
+      <label for="bmi">BMI:</label>
+      <input type="number" id="bmi" name="bmi" placeholder="Enter your BMI" step="0.1" required>
+
+      <label for="children">Number of Children:</label>
+      <input type="number" id="children" name="children" placeholder="Enter number of children" required>
+
+      <label>Sex:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="sex" value="female" required> Female</label>
+        <label><input type="radio" name="sex" value="male" required> Male</label>
+      </div>
+
+      <label>Smoker:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="smoker" value="no" required> No</label>
+        <label><input type="radio" name="smoker" value="yes" required> Yes</label>
+      </div>
+
+      <label for="region">Region:</label>
+      <select id="region" name="region" required>
+        <option value="northeast">Northeast</option>
+        <option value="northwest">Northwest</option>
+        <option value="southeast">Southeast</option>
+        <option value="southwest">Southwest</option>
+      </select>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+      Predicted Charge: $ {{ prediction }}
+    </div>
+    {% elif error %}
+    <div class="result" style="color: red;">
+      Error: {{ error }}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
