@@ -1,0 +1,7 @@
+os
+pdfminer.six
+openai
+tiktoken
+chromadb
+langchain
+langchain-community
